@@ -48,6 +48,33 @@ categories = [
     "https://www.instacart.com/store/costco/collections/rc-get-ready-for-fall-2024"
 ]
 
+category_titles = [
+    "Kirkland Signature",
+    "Snacks & Candy",
+    "Deli & Dairy",
+    "Produce",
+    "Beverages",
+    "Pantry",
+    "Frozen",
+    "Household",
+    "Health & Personal Care",
+    "Meat & Seafood",
+    "Paper Goods",
+    "Cleaning & Laundry",
+    "Pets",
+    "Bakery",
+    "Home Goods",
+    "Electronics",
+    "Baby",
+    "Other Goods",
+    "Sales",
+    "Cakes",
+    "New",
+    "Fall Favorites",
+    "Large Item Delivery",
+    "Get ready for Fall"
+]
+
 def is_relative_url(string):
     # Check if the string starts with '/' and matches a valid URL path
     pattern = r"^\/([a-z0-9\-._~!$&'()*+,;=:%]+\/?)*$"
@@ -74,7 +101,7 @@ def get_product_list(driver):
     driver.get(categories[0])
     time.sleep(120)
 
-    for category in categories:
+    for index, category in categories:
         driver.get(category)
         scroll_to_bottom_multiple_times(driver, 2, 80)
         elements = driver.find_elements(By.XPATH, "//div[@aria-label='Product']")
@@ -132,7 +159,7 @@ def get_product_list(driver):
                 "https://instacart.com",
                 product_link,
                 "Instacart",
-                "",
+                category_titles[index],
                 "",
                 title,
                 "",
