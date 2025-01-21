@@ -98,10 +98,11 @@ def scroll_to_bottom_multiple_times(driver, scroll_pause_time=2, max_scrolls=10)
 
 def get_product_list(driver):
     global section_id, categories
+    num = 0
     driver.get(categories[0])
     time.sleep(120)
 
-    for index, category in categories:
+    for category in categories:
         driver.get(category)
         scroll_to_bottom_multiple_times(driver, 2, 80)
         elements = driver.find_elements(By.XPATH, "//div[@aria-label='Product']")
@@ -159,7 +160,7 @@ def get_product_list(driver):
                 "https://instacart.com",
                 product_link,
                 "Instacart",
-                category_titles[index],
+                category_titles[num],
                 "",
                 title,
                 "",
@@ -181,6 +182,7 @@ def get_product_list(driver):
             products.append(record)
             print(record)
             section_id = section_id + 1
+        num = num + 1
     return products
 
 if __name__ == "__main__":
