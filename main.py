@@ -187,8 +187,8 @@ def get_product_list(driver):
     
     index = 0
     for product in products:
+        time.sleep(5)
         driver.get(product[2])
-        time.sleep(1)
         try:
             description_element = driver.find_element(By.CLASS_NAME, "e-tluef2")
             driver.execute_script("arguments[0].scrollIntoView();", description_element)
