@@ -188,18 +188,25 @@ def get_product_list(driver):
     index = 0
     for product in products:
         driver.get(product[2])
+        time.sleep(1)
         try:
             description_element = driver.find_element(By.CLASS_NAME, "e-tluef2")
             driver.execute_script("arguments[0].scrollIntoView();", description_element)
             products[index][5] = description_element.text.strip()
+        except:
+            print("no description")
+        try:
             rating_element = driver.find_element(By.CLASS_NAME, "e-1qqnk49")
             driver.execute_script("arguments[0].scrollIntoView();", rating_element)
             products[index][14] = rating_element.text.strip()
+        except:
+            print("no rating")
+        try:
             rating_count_element = driver.find_element(By.CLASS_NAME, "e-17p9tvk")
             driver.execute_script("arguments[0].scrollIntoView();", rating_count_element)
             products[index][15] = rating_count_element.text.strip()
         except:
-            print("no info")
+            print("no rating count")
         print(products[index])
         index = index + 1
 
