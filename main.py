@@ -24,29 +24,29 @@ product_links = []
 
 categories = [
     "https://www.instacart.com/store/costco/collections/rc-a-34561-kirkland-signature?unauth-refresh=1",
-    "https://www.instacart.com/store/costco/collections/snacks-and-candy",
-    "https://www.instacart.com/store/costco/collections/9859-deli-dairy",
-    "https://www.instacart.com/store/costco/collections/produce",
-    "https://www.instacart.com/store/costco/collections/beverages",
-    "https://www.instacart.com/store/costco/collections/1365-pantry-gen-merch",
-    "https://www.instacart.com/store/costco/collections/frozen",
-    "https://www.instacart.com/store/costco/collections/household",
-    "https://www.instacart.com/store/costco/collections/9909-health-personal-care",
-    "https://www.instacart.com/store/costco/collections/meat-and-seafood",
-    "https://www.instacart.com/store/costco/collections/9886-paper-goods",
-    "https://www.instacart.com/store/costco/collections/9904-cleaning-laundry",
-    "https://www.instacart.com/store/costco/collections/pets",
-    "https://www.instacart.com/store/costco/collections/baked-goods",
-    "https://www.instacart.com/store/costco/collections/9809-home-goods",
-    "https://www.instacart.com/store/costco/collections/electronics",
-    "https://www.instacart.com/store/costco/collections/baby",
-    "https://www.instacart.com/store/costco/collections/9929-other-goods",
-    "https://www.instacart.com/store/costco/collections/dynamic_collection-sales",
-    "https://www.instacart.com/store/costco/collections/rc-cakes",
-    "https://www.instacart.com/store/costco/collections/rc-whats-new",
-    "https://www.instacart.com/store/costco/collections/rc-fall-favorites",
-    "https://www.instacart.com/store/costco/collections/rc-large-item-delivery",
-    "https://www.instacart.com/store/costco/collections/rc-get-ready-for-fall-2024"
+    # "https://www.instacart.com/store/costco/collections/snacks-and-candy",
+    # "https://www.instacart.com/store/costco/collections/9859-deli-dairy",
+    # "https://www.instacart.com/store/costco/collections/produce",
+    # "https://www.instacart.com/store/costco/collections/beverages",
+    # "https://www.instacart.com/store/costco/collections/1365-pantry-gen-merch",
+    # "https://www.instacart.com/store/costco/collections/frozen",
+    # "https://www.instacart.com/store/costco/collections/household",
+    # "https://www.instacart.com/store/costco/collections/9909-health-personal-care",
+    # "https://www.instacart.com/store/costco/collections/meat-and-seafood",
+    # "https://www.instacart.com/store/costco/collections/9886-paper-goods",
+    # "https://www.instacart.com/store/costco/collections/9904-cleaning-laundry",
+    # "https://www.instacart.com/store/costco/collections/pets",
+    # "https://www.instacart.com/store/costco/collections/baked-goods",
+    # "https://www.instacart.com/store/costco/collections/9809-home-goods",
+    # "https://www.instacart.com/store/costco/collections/electronics",
+    # "https://www.instacart.com/store/costco/collections/baby",
+    # "https://www.instacart.com/store/costco/collections/9929-other-goods",
+    # "https://www.instacart.com/store/costco/collections/dynamic_collection-sales",
+    # "https://www.instacart.com/store/costco/collections/rc-cakes",
+    # "https://www.instacart.com/store/costco/collections/rc-whats-new",
+    # "https://www.instacart.com/store/costco/collections/rc-fall-favorites",
+    # "https://www.instacart.com/store/costco/collections/rc-large-item-delivery",
+    # "https://www.instacart.com/store/costco/collections/rc-get-ready-for-fall-2024"
 ]
 
 category_titles = [
@@ -191,12 +191,15 @@ def get_product_list(driver):
         description_element = driver.find_element(By.CLASS_NAME, "e-tluef2")
         driver.execute_script("arguments[0].scrollIntoView();", description_element)
         products[index][5] = description_element.text.strip()
-        rating_element = driver.find_element(By.CLASS_NAME, "e-1qqnk49")
-        driver.execute_script("arguments[0].scrollIntoView();", rating_element)
-        products[index][14] = rating_element.text.strip()
-        rating_count_element = driver.find_element(By.CLASS_NAME, "e-17p9tvk")
-        driver.execute_script("arguments[0].scrollIntoView();", rating_count_element)
-        products[index][15] = rating_count_element.text.strip()
+        try:
+            rating_element = driver.find_element(By.CLASS_NAME, "e-1qqnk49")
+            driver.execute_script("arguments[0].scrollIntoView();", rating_element)
+            products[index][14] = rating_element.text.strip()
+            rating_count_element = driver.find_element(By.CLASS_NAME, "e-17p9tvk")
+            driver.execute_script("arguments[0].scrollIntoView();", rating_count_element)
+            products[index][15] = rating_count_element.text.strip()
+        except:
+            print("no rating")
         print(products[index])
         index = index + 1
 
