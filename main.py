@@ -187,7 +187,7 @@ def get_product_list(driver):
     
     index = 0
     for product in products:
-        time.sleep(5)
+        time.sleep(2)
         driver.get(product[2])
         try:
             description_element = driver.find_element(By.CLASS_NAME, "e-tluef2")
