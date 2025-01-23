@@ -202,9 +202,9 @@ def get_product_list(driver):
         except:
             print("no rating")
         try:
-            rating_count_element = driver.find_element(By.CLASS_NAME, "e-17p9tvk")
+            rating_count_element = driver.find_element(By.CSS_SELECTOR, "button[data-testid='product-rating-count'] span")
             driver.execute_script("arguments[0].scrollIntoView();", rating_count_element)
-            products[index][15] = rating_count_element.text.strip()
+            products[index][15] = rating_count_element.text
         except:
             print("no rating count")
         print(products[index])
