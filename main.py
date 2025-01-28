@@ -105,7 +105,7 @@ def get_product_list(driver):
 
     for category in categories:
         driver.get(category)
-        scroll_to_bottom_multiple_times(driver, 2, 80)
+        scroll_to_bottom_multiple_times(driver, 2, 500)
         elements = driver.find_elements(By.XPATH, "//div[@aria-label='Product']")
         for element in elements:
 
