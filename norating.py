@@ -101,10 +101,12 @@ def get_product_list(driver):
     global section_id, categories
     num = 0
     driver.get(categories[0])
+    driver.execute_script("document.body.style.zoom='25%'")
     time.sleep(120)
 
     for category in categories:
         driver.get(category)
+        driver.execute_script("document.body.style.zoom='25%'")
         scroll_to_bottom_multiple_times(driver, 2, 80)
         elements = driver.find_elements(By.XPATH, "//div[@aria-label='Product']")
         for element in elements:
